@@ -54,7 +54,7 @@ OS:            Windows 10 10.0 amd64
 
 ### IntelliJ Idea
 
-IntelliJ Idea 2024.2.2 Community Edition, pristine portable version (i.e., ZIP download from https://download.jetbrains.com/idea/ideaIC-2024.2.2.win.zip):
+IntelliJ Idea 2024.2.2 Community Edition, portable version (i.e., ZIP download from https://download.jetbrains.com/idea/ideaIC-2024.2.2.win.zip):
 
 ```properties
 IntelliJ IDEA 2024.2.2 (Community Edition)
@@ -91,7 +91,7 @@ Kotlin: 242.22855.74-IJ
    as well as
    ![main compulation errors][main-compilation]
 
-[querydsl-dependencies]: querydsl-module-dependencies.png
-[main-dependencies]: main-module-dependencies.png
-[q-models-compilation]: q-model-compilation-error.png
-[main-compilation]: compilation-error.png
+[querydsl-dependencies]: docs/querydsl-module-dependencies.png
+[main-dependencies]: docs/main-module-dependencies.png
+[q-models-compilation]: docs/q-model-compilation-error.png
+[main-compilation]: docs/compilation-error.png
