@@ -2,12 +2,13 @@
 
 ## 💡 Description
 
-This Spring Boot 3 application handles **payment initiation, payment consultation, and payment relaunch** requests in the context of PID.
-To that end, it relays the final execution of those requests to _paiement-exec_, which presides Luxhub.
+Minimal example showing an IntelliJ Idea issue in connection with QueryDsl (http://querydsl.com/) and Gradle.
 
 ## 🚄 Runtime environment
 
 ### OS
+
+Windows 10:
 
 ```powershell
 PS C:\Users\u197td> [Environment]::OSVersion
@@ -19,6 +20,8 @@ Platform ServicePack Version      VersionString
 
 ### JDK
 
+Oracle JDK 17:
+
 ```bash
 $ ./java -version
 java version "17.0.7" 2023-04-18 LTS
@@ -27,6 +30,8 @@ Java HotSpot(TM) 64-Bit Server VM (build 17.0.7+8-LTS-224, mixed mode, sharing)
 ```
 
 ### Gradle
+
+Gradle 8.10.1:
 
 ```bash
 $ ./gradlew --version
@@ -49,6 +54,8 @@ OS:            Windows 10 10.0 amd64
 
 ### IntelliJ Idea
 
+IntelliJ Idea 2024.2.2 Community Edition, pristine portable version (i.e., ZIP download from https://download.jetbrains.com/idea/ideaIC-2024.2.2.win.zip):
+
 ```properties
 IntelliJ IDEA 2024.2.2 (Community Edition)
 Build #IC-242.22855.74, built on September 18, 2024
@@ -70,6 +77,21 @@ org.sonarlint.idea (10.8.1.79205)
 Kotlin: 242.22855.74-IJ
 ```
 
-## 💥 Reproduce error
+## 💥 Reproduction of problem
 
-Execute the Gradle task `compileJava`, which depends on the task `compileQuerydsl`.
+1. Execute the Gradle task `compileJava`, which depends on the task `compileQuerydsl`.
+1. QueryDsl Q models are generated in the top-level directory `generated-src`. This represents a _module_ named `querydsl` in IntelliJ Idea.
+1. Issues:
+   * Neither the `main` module depends on the `querydsl` module, nor vice-versa:
+   ![querydsl module dependences][querydsl-dependencies]
+   * The  `querydsl` module does not have any of the dependencies of the `main` module, not even its own QueryDsl jars are present.
+   ![main module dependences][main-dependencies]
+   * This leads to both compilation errors in the Q models in IntelliJ Idea:
+   ![Q model compulation errors][q-models-compilation]
+   as well as
+   ![main compulation errors][main-compilation]
+
+[querydsl-dependencies]: querydsl-module-dependencies.png
+[main-dependencies]: main-module-dependencies.png
+[q-models-compilation]: q-model-compilation-error.png
+[main-compilation]: compilation-error.png
